@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>InstaCircle | Instagram Analytics</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- JavaScript -->
+    <script src="js/app.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="header">
+        <div class="logo">
+            <h1>InstaCircle ✿</h1>
+        </div>
+
+        <nav>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#upload">Upload Data</a>
+            <a href="#about">About</a>
+        </nav>
+    </header>
+
+
+    <!-- Main Content -->
+    <main class="container" id="dashboard">
+
+        <!-- Welcome Section -->
+        <section class="welcome">
+            <h2>Your Instagram Circle</h2>
+            <p>Discover who's following you back.</p>
+        </section>
+
+
+        <!-- Statistics Cards -->
+        <section class="stats-grid">
+
+            <article class="stat-card">
+                <h3>Followers</h3>
+                <p id="followersCount">0</p>
+            </article>
+
+            <article class="stat-card">
+                <h3>Following</h3>
+                <p id="followingCount">0</p>
+            </article>
+
+            <article class="stat-card">
+                <h3>Not Following Back</h3>
+                <p id="notFollowingBackCount">0</p>
+            </article>
+
+            <article class="stat-card">
+                <h3>Mutual Followers</h3>
+                <p id="mutualCount">0</p>
+            </article>
+
+        </section>
+
+
+        <!-- Upload Section -->
+        <section class="upload-section" id="upload">
+
+            <h2>Upload Your Instagram Data</h2>
+
+            <p>
+                Upload your Instagram followers and following
+                export to analyze your connections.
+            </p>
+
+            <div class="upload-box">
+
+                <input
+                    type="file"
+                    id="instagramFile"
+                    accept=".json,.html"
+                    multiple
+                >
+
+                <p class="upload-note">
+                    Supported formats: JSON and HTML
+                </p>
+
+            </div>
+
+            <button id="analyzeButton">
+                Analyze My Circle
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer id="about">
+        <p>InstaCircle © 2026</p>
+        <p>Built with HTML, CSS and JavaScript.</p>
+    </footer>
+
+</body>
+</html>

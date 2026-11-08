@@ -1,0 +1,188 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff5fa;
+    color: #382a38;
+}
+
+
+/* HEADER */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 8%;
+    background-color: white;
+
+    border-bottom: 1px solid #f1dce9;
+}
+
+.logo h1 {
+    color: #d94e91;
+    font-size: 25px;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #806f7e;
+    font-size: 14px;
+}
+
+
+/* MAIN CONTAINER */
+
+.container {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+
+/* WELCOME */
+
+.welcome {
+    margin-bottom: 35px;
+}
+
+.welcome h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.welcome p {
+    color: #806f7e;
+}
+
+
+/* STATISTICS */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.stat-card {
+    background-color: white;
+    padding: 25px;
+
+    border-radius: 15px;
+    border: 1px solid #f1dce9;
+}
+
+.stat-card h3 {
+    font-size: 13px;
+    color: #806f7e;
+}
+
+.stat-card p {
+    font-size: 30px;
+    font-weight: bold;
+    color: #d94e91;
+    margin-top: 15px;
+}
+
+
+/* UPLOAD SECTION */
+
+.upload-section {
+    background-color: white;
+    padding: 30px;
+    margin-top: 35px;
+
+    border-radius: 15px;
+    border: 1px solid #f1dce9;
+}
+
+.upload-section h2 {
+    margin-bottom: 10px;
+}
+
+.upload-section p {
+    color: #806f7e;
+}
+
+.upload-box {
+    border: 2px dashed #e8bfd4;
+    padding: 30px;
+    margin: 25px 0;
+
+    border-radius: 12px;
+    text-align: center;
+}
+
+.upload-note {
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+button {
+    background-color: #d94e91;
+    color: white;
+
+    border: none;
+    border-radius: 10px;
+
+    padding: 13px 25px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #bd3678;
+}
+
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #806f7e;
+    font-size: 13px;
+    line-height: 2;
+}
+
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 800px) {
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        gap: 15px;
+    }
+
+    .welcome h2 {
+        font-size: 24px;
+    }
+
+}
