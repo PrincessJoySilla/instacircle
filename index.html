@@ -1,107 +1,379 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fff0f5">
 
     <title>InstaCircle | Instagram Analytics</title>
 
-    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- JavaScript -->
     <script src="js/app.js" defer></script>
 </head>
 
 <body>
 
-    <!-- Navigation -->
     <header class="header">
-        <div class="logo">
-            <h1>InstaCircle ✿</h1>
-        </div>
+        <a class="logo" href="#dashboard">InstaCircle ✿</a>
 
-        <nav>
-            <a href="#dashboard">Dashboard</a>
-            <a href="#upload">Upload Data</a>
-            <a href="#about">About</a>
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="#dashboard" class="nav-link active" aria-current="location">Dashboard</a>
+            <a href="#upload" class="nav-link">Upload</a>
+            <a href="#results" class="nav-link">Results</a>
+            <a href="#guide" class="nav-link">How to Use</a>
         </nav>
     </header>
 
+    <main class="container">
 
-    <!-- Main Content -->
-    <main class="container" id="dashboard">
-
-        <!-- Welcome Section -->
-        <section class="welcome">
-            <h2>Your Instagram Circle</h2>
-            <p>Discover who's following you back.</p>
+        <!-- DASHBOARD -->
+        <section class="welcome page-section" id="dashboard">
+            <p class="eyebrow">YOUR PERSONAL FOLLOWER ANALYTICS</p>
+            <h1>Your Instagram Circle</h1>
+            <p>Find out who's following you back.</p>
         </section>
 
-
-        <!-- Statistics Cards -->
-        <section class="stats-grid">
+        <section class="stats-grid" aria-label="Instagram statistics">
 
             <article class="stat-card">
-                <h3>Followers</h3>
+                <span class="stat-icon">♡</span>
+                <h2>Followers</h2>
                 <p id="followersCount">0</p>
             </article>
 
             <article class="stat-card">
-                <h3>Following</h3>
+                <span class="stat-icon">↗</span>
+                <h2>Following</h2>
                 <p id="followingCount">0</p>
             </article>
 
             <article class="stat-card">
-                <h3>Not Following Back</h3>
+                <span class="stat-icon">!</span>
+                <h2>Not Following Back</h2>
                 <p id="notFollowingBackCount">0</p>
             </article>
 
             <article class="stat-card">
-                <h3>Mutual Followers</h3>
+                <span class="stat-icon">♥</span>
+                <h2>Mutuals</h2>
                 <p id="mutualCount">0</p>
             </article>
 
         </section>
 
+        <!-- UPLOAD -->
+        <section class="panel upload-section page-section" id="upload">
 
-        <!-- Upload Section -->
-        <section class="upload-section" id="upload">
+            <div class="section-heading">
+                <p class="eyebrow">STEP 01</p>
+                <h2>Upload your Instagram data</h2>
+                <p>Choose the JSON files from your Instagram data export.</p>
+            </div>
 
-            <h2>Upload Your Instagram Data</h2>
+            <div class="file-grid">
 
-            <p>
-                Upload your Instagram followers and following
-                export to analyze your connections.
-            </p>
+                <div class="file-card">
+                    <label for="followersFile">Followers JSON</label>
+                    <p>Upload all your followers files, including followers_1.json, followers_2.json, and so on.</p>
+                    <input
+                        type="file"
+                        id="followersFile"
+                        accept=".json,application/json"
+                        multiple
+                    >
+                </div>
 
-            <div class="upload-box">
-
-                <input
-                    type="file"
-                    id="instagramFile"
-                    accept=".json,.html"
-                    multiple
-                >
-
-                <p class="upload-note">
-                    Supported formats: JSON and HTML
-                </p>
+                <div class="file-card">
+                    <label for="followingFile">Following JSON</label>
+                    <p>Upload your following.json file.</p>
+                    <input
+                        type="file"
+                        id="followingFile"
+                        accept=".json,application/json"
+                        multiple
+                    >
+                </div>
 
             </div>
 
-            <button id="analyzeButton">
-                Analyze My Circle
-            </button>
+            <div class="action-row">
+                <button id="analyzeButton" class="primary-button" type="button">
+                    Analyze My Circle
+                </button>
 
+                <button id="clearButton" class="secondary-button" type="button">
+                    Clear Results
+                </button>
+            </div>
+
+            <p id="statusMessage" class="status-message" aria-live="polite">
+                Upload your files to get started.
+            </p>
+
+        </section>
+
+        <!-- RESULTS -->
+        <section class="results-section page-section" id="results">
+
+            <div class="section-heading">
+                <p class="eyebrow">STEP 02</p>
+                <h2>Your results</h2>
+                <p>Search usernames and download your results.</p>
+            </div>
+
+            <div class="panel result-panel">
+
+                <div class="result-heading">
+                    <div>
+                        <h3>Not Following Back</h3>
+                        <p>People you follow who don't follow you.</p>
+                    </div>
+
+                    <button id="exportNotFollowingBack" class="export-button" type="button">
+                        Export CSV
+                    </button>
+                </div>
+
+                <input
+                    type="search"
+                    id="searchNotFollowingBack"
+                    class="search-input"
+                    placeholder="Search username..."
+                    aria-label="Search people who don't follow you back"
+                >
+
+                <p id="notFollowingBackEmpty" class="empty-message">
+                    No results yet. Upload your files and analyze first.
+                </p>
+
+                <ul id="notFollowingBackList" class="username-list"></ul>
+
+            </div>
+
+            <div class="panel result-panel">
+
+                <div class="result-heading">
+                    <div>
+                        <h3>Mutual Followers</h3>
+                        <p>People who follow you and whom you follow.</p>
+                    </div>
+
+                    <button id="exportMutuals" class="export-button" type="button">
+                        Export CSV
+                    </button>
+                </div>
+
+                <input
+                    type="search"
+                    id="searchMutuals"
+                    class="search-input"
+                    placeholder="Search username..."
+                    aria-label="Search mutual followers"
+                >
+
+                <p id="mutualEmpty" class="empty-message">
+                    No results yet. Upload your files and analyze first.
+                </p>
+
+                <ul id="mutualList" class="username-list"></ul>
+
+            </div>
+
+        </section>
+
+        <!-- HOW TO DOWNLOAD GUIDE -->
+        <section class="guide-section page-section" id="guide">
+
+            <div class="section-heading">
+                <p class="eyebrow">NEED HELP?</p>
+                <h2>How to Download Your Instagram Data</h2>
+                <p>Follow this step-by-step guide to get the JSON files needed by InstaCircle.</p>
+            </div>
+
+            <div class="panel guide-panel">
+
+                <div class="guide-intro">
+                    <h3>Before you start</h3>
+                    <p>
+                        You need access to your Instagram account. You do not need to
+                        share your password with InstaCircle.
+                    </p>
+                </div>
+
+                <div class="guide-step">
+                    <span class="step-number">01</span>
+                    <div>
+                        <h3>Open Instagram</h3>
+                        <p>
+                            Open the Instagram app and go to your profile.
+                            Tap the menu icon (☰) in the upper-right corner.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <span class="step-number">02</span>
+                    <div>
+                        <h3>Open Accounts Center</h3>
+                        <p>
+                            Go to <strong>Accounts Center</strong>. You can usually
+                            find it near the top of the Settings and activity page.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <span class="step-number">03</span>
+                    <div>
+                        <h3>Find the download option</h3>
+                        <p>
+                            Select <strong>Your information and permissions</strong>,
+                            then choose <strong>Download your information</strong>
+                            or <strong>Download or transfer information</strong>,
+                            depending on the version of Instagram you see.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <span class="step-number">04</span>
+                    <div>
+                        <h3>Select your Instagram account</h3>
+                        <p>
+                            If you have multiple accounts connected to Accounts Center,
+                            select the Instagram account whose followers and following
+                            you want to analyze.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <span class="step-number">05</span>
+                    <div>
+                        <h3>Choose the information to download</h3>
+                        <p>
+                            Select <strong>Some of your information</strong> if that
+                            option is available. Look for
+                            <strong>Followers and following</strong> under the
+                            connections section.
+                        </p>
+                        <p>
+                            If Instagram presents different selection screens,
+                            make sure Followers and Following are both included.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <span class="step-number">06</span>
+                    <div>
+                        <h3>Set the download options</h3>
+                        <ul class="guide-list">
+                            <li><strong>Download to device:</strong> Choose this option.</li>
+                            <li><strong>Date range:</strong> Select All time.</li>
+                            <li><strong>Format:</strong> Choose JSON, not HTML.</li>
+                            <li><strong>Media quality:</strong> This is not important for InstaCircle.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <span class="step-number">07</span>
+                    <div>
+                        <h3>Request your download</h3>
+                        <p>
+                            Review your selections and submit the request.
+                            Instagram may take some time to prepare your information.
+                            You may receive a notification or email when the download
+                            is ready.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <span class="step-number">08</span>
+                    <div>
+                        <h3>Download and extract the ZIP file</h3>
+                        <p>
+                            Once your download is ready, download the ZIP file to your
+                            device. Find it in your Downloads folder, then extract it.
+                        </p>
+                        <p>
+                            On Windows, right-click the ZIP file and select
+                            <strong>Extract All</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <span class="step-number">09</span>
+                    <div>
+                        <h3>Find the correct JSON files</h3>
+                        <p>
+                            Open the extracted folder and look for a folder named
+                            <strong>connections</strong>, then
+                            <strong>followers_and_following</strong>.
+                        </p>
+                        <p>Inside, look for files similar to these:</p>
+
+                        <div class="file-example">
+                            <p>📄 followers_1.json</p>
+                            <p>📄 followers_2.json <span>(if present)</span></p>
+                            <p>📄 following.json</p>
+                        </div>
+
+                        <p>
+                            Instagram may split your followers into multiple files.
+                            If you have more than one followers JSON file, you must
+                            select all of them.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <span class="step-number">10</span>
+                    <div>
+                        <h3>Upload your files to InstaCircle</h3>
+                        <p>
+                            Return to the <strong>Upload</strong> section:
+                        </p>
+                        <ul class="guide-list">
+                            <li>Under Followers JSON, select every followers JSON file.</li>
+                            <li>Under Following JSON, select your following.json file.</li>
+                            <li>Click <strong>Analyze My Circle</strong>.</li>
+                        </ul>
+                        <p>
+                            Your results will appear in the Results section.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="guide-tip">
+                    <strong>Having trouble finding the files?</strong>
+                    <p>
+                        Instagram sometimes changes its menus and folder names.
+                        Look for the Followers and Following data in your downloaded
+                        export. Make sure you selected JSON format.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PRIVACY -->
+        <section class="privacy-note">
+            <strong>♡ Your privacy matters.</strong>
+            <p>
+                InstaCircle processes the JSON files you select directly in your
+                browser. This version does not upload your files to an InstaCircle
+                server or store them on our servers. Your Instagram password is
+                never requested. Any CSV you export is downloaded to your own device.
+            </p>
         </section>
 
     </main>
 
-
-    <!-- Footer -->
-    <footer id="about">
+    <footer>
         <p>InstaCircle © 2026</p>
         <p>Built with HTML, CSS and JavaScript.</p>
     </footer>

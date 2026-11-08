@@ -1,0 +1,23 @@
+
+{
+    "relationships_following": [
+        {
+            "title": "jane_doe",
+            "string_list_data": [
+                { "value": "jane_doe" }
+            ]
+        },
+        {
+            "title": "maria_123",
+            "string_list_data": [
+                { "value": "maria_123" }
+            ]
+        },
+        {
+            "title": "alex_garcia",
+            "string_list_data": [
+                { "value": "alex_garcia" }
+            ]
+        }
+    ]
+}
